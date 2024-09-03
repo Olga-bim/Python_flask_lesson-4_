@@ -173,3 +173,5 @@ https://flask.palletsprojects.com/en/3.0.x/
     @app.route('/test1')  # Декоратор route определяет маршрут для URL "/"
     def fghndf():  # Функция, которая выполняется при обращении к маршруту "/"
         return  render_template('hello1.html') 
+
+![alt text](image.png)
