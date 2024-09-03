@@ -1,17 +1,22 @@
-from flask import Flask, render_template  # Импортируем класс Flask из библиотеки flask
+from flask import Flask, render_template  
 
-app = Flask(__name__)  # Создаём экземпляр класса Flask, который будет нашим приложением
+app = Flask(__name__)  
 
-@app.route('/test1')  # Декоратор route определяет маршрут для URL "/"
-def fghndf():  # Функция, которая выполняется при обращении к маршруту "/"
-    return  render_template('hello1.html') 
+ar = ["waga", "baga", "saga"]
 
-@app.route('/test2')  # Декоратор route определяет маршрут для URL "/"
-def sgbs():  # Функция, которая выполняется при обращении к маршруту "/"
+
+@app.route('/test1')  
+def fghndf():  
+    # n1 =9
+    return  render_template('hello1.html', n = ar) 
+
+@app.route('/test2')  
+def sgbs():  
     return render_template('hello2.html') 
 
-@app.route('/test3')  # Декоратор route определяет маршрут для URL "/"
-def jlklh():  # Функция, которая выполняется при обращении к маршруту "/"
+@app.route('/test3')  
+def jlklh():  
     return render_template('hello3.html') 
-if __name__ == '__main__':  # Проверяем, что код запущен как основной модуль, а не импортирован
+
+if __name__ == '__main__':  
     app.run(debug=True)  # Запускаем приложение Flask в режиме отладки

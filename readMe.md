@@ -175,3 +175,6 @@ https://flask.palletsprojects.com/en/3.0.x/
         return  render_template('hello1.html') 
 
 ![alt text](image.png)
+
+# 6. Jinja
+## это мощный и гибкий шаблонизатор для Python, который используется в веб-фреймворке Flask и других проектах для генерации HTML-кода и других текстовых форматов на основе данных.
