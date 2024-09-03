@@ -4,11 +4,16 @@ app = Flask(__name__)
 
 ar = ["waga", "baga", "saga"]
 
-
+data = [
+        {'name': 'Alice', 'age': 30, 'admin': False},
+        {'name': 'Bob', 'age': 25, 'admin': True},
+        {'name': 'Charlie', 'age': 35, 'admin': False},
+        {'name': 'Olga', 'age': 40, 'admin': True}
+    ]
 @app.route('/test1')  
 def fghndf():  
     # n1 =9
-    return  render_template('hello1.html', n = ar) 
+    return  render_template('hello1.html', people=data) 
 
 @app.route('/test2')  
 def sgbs():  

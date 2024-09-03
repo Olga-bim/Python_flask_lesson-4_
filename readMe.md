@@ -178,3 +178,99 @@ https://flask.palletsprojects.com/en/3.0.x/
 
 # 6. Jinja
 ## это мощный и гибкий шаблонизатор для Python, который используется в веб-фреймворке Flask и других проектах для генерации HTML-кода и других текстовых форматов на основе данных.
+
+## 6.1.  for, if in Jinja
+## В пайтон пишен массив 
+    data = [
+            {'name': 'Alice', 'age': 30},
+            {'name': 'Bob', 'age': 25},
+            {'name': 'Charlie', 'age': 35},
+            {'name': 'Olga', 'age': 40}
+        ]
+    @app.route('/test1')  
+    def fghndf():  
+        # n1 =9
+        return  render_template('hello1.html', people=data)
+## В файле HTML даем условие
+    <ul>
+            {% for person in people %}
+            {% if person.age > 30 %}
+            <li>{{ person.name }} is {{ person.age }} years old is above 30</li>
+            {% elif person.age == 30 %}
+            <li>{{ person.name }} is 30 years old</li>
+            {% else %}
+            <li>{{ person.name }} is {{ person.age }} years old  below 30</li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+
+## URL for 
+### В Flask функция url_for используется для генерации URL-адресов на основе имен маршрутов (или endpoint-ов). Это упрощает создание ссылок, так как URL-адреса будут автоматически обновляться при изменении маршрутов, и вы можете избежать жестко закодированных путей в вашем шаблоне.
+
+### Давайте рассмотрим, как использовать url_for в вашем Flask-приложении для создания ссылок на различные маршруты. Мы также рассмотрим пример с использованием списка людей.
+### Пример использования url_for
+### 1. Flask-приложение
+### Создадим файл app.py, в котором будут определены два маршрута:
+
+### Главная страница, которая отображает список людей.
+### Страница с подробной информацией о каждом человеке.
+    from flask import Flask, render_template, url_for
+
+    app = Flask(__name__)
+
+    @app.route('/')
+    def home():
+        people = [
+            {'name': 'Alice', 'age': 30},
+            {'name': 'Bob', 'age': 25},
+            {'name': 'Charlie', 'age': 35}
+        ]
+        return render_template('people.html', people=people)
+
+    @app.route('/person/<name>')
+    def person(name):
+        people = {
+            'Alice': {'age': 30, 'bio': 'Alice is a software engineer.'},
+            'Bob': {'age': 25, 'bio': 'Bob is a graphic designer.'},
+            'Charlie': {'age': 35, 'bio': 'Charlie is a project manager.'}
+        }
+        person = people.get(name, {})
+        return render_template('person.html', name=name, person=person)
+
+    if __name__ == '__main__':
+        app.run(debug=True)
+### 2. Шаблон для списка людей (templates/people.html)
+### В этом шаблоне мы будем использовать url_for для создания ссылок на страницы с подробной информацией о каждом человеке:
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>People</title>
+    </head>
+    <body>
+        <h1>List of People</h1>
+        <ul>
+            {% for person in people %}
+                <li>
+                    <a href="{{ url_for('person', name=person.name) }}">{{ person.name }}</a> is {{ person.age }} years old
+                </li>
+            {% endfor %}
+        </ul>
+    </body>
+    </html>
+### 3. Шаблон для страницы с подробной информацией (templates/person.html)
+### Этот шаблон отображает подробную информацию о человеке:
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>{{ name }}</title>
+    </head>
+    <body>
+        <h1>{{ name }}</h1>
+        <p>Age: {{ person.age }}</p>
+        <p>Bio: {{ person.bio }}</p>
+        <a href="{{ url_for('home') }}">Back to list</a>
+    </body>
+    </html>
+![alt text](<url for-1.PNG>)
+
+# 7. Using base layout - Template
